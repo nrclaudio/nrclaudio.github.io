@@ -291,21 +291,20 @@ a {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 60px;
-    align-items: start;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .about-text p {
     font-size: 1.1rem;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     line-height: 1.8;
 }
 
 .skills {
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 .skills h3 {
@@ -316,8 +315,11 @@ a {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    justify-items: center;
 }
 
 .skill-item {
