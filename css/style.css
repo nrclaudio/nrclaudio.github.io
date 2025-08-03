@@ -186,7 +186,9 @@ a {
 }
 
 .highlight {
-    color: #667eea; /* Fallback color */
+    color: #667eea !important;
+    font-weight: 700 !important;
+    /* Gradient text for modern browsers */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -194,6 +196,14 @@ a {
     -moz-text-fill-color: transparent;
     background-clip: text;
     display: inline;
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (-webkit-background-clip: text) {
+    .highlight {
+        color: #667eea !important;
+        text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+    }
 }
 
 .hero-subtitle {
