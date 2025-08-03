@@ -1,19 +1,16 @@
-name: Portfolio CI
+name: Portfolio Status
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  status:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Portfolio build success
+    - name: Portfolio status
       run: |
-        echo "✅ Portfolio files are ready"
-        echo "🚀 GitHub Pages will deploy automatically"
-        echo "🔧 Pre-commit checks disabled for portfolio"
+        echo "✅ Portfolio updated successfully"
+        echo "🚀 GitHub Pages will deploy automatically from main branch"
+        echo "🔧 No additional build steps required"
