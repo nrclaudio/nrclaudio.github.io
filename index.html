@@ -17,7 +17,25 @@
 </head>
 <body>
 
-<!-- Navigation remains unchanged -->
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="#home">nrclaud.io</a>
+        </div>
+        <div class="nav-menu">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
 
 <!-- Hero Section -->
 <section id="home" class="hero">
@@ -68,25 +86,12 @@
                     <div class="skills-grid">
                         <div class="skill-item"><i class="fab fa-python"></i> <span>Python</span></div>
                         <div class="skill-item"><i class="fas fa-brain"></i> <span>PyTorch</span></div>
-                        <div class="skill-item"><i class="fas fa-network-wired"></i> <span>Graph ML</span></div>
-                        <div class="skill-item"><i class="fas fa-vials"></i> <span>scRNA-seq / Spatial</span></div>
+                        <div class="skill-item"><i class="fas fa-project-diagram"></i> <span>Generative Models (VAEs)</span></div>
+                        <div class="skill-item"><i class="fas fa-dna"></i> <span>Multi-Omics Integration</span></div>
+                        <div class="skill-item"><i class="fas fa-map"></i> <span>Spatial Transcriptomics</span></div>
                         <div class="skill-item"><i class="fas fa-infinity"></i> <span>Optimal Transport</span></div>
                         <div class="skill-item"><i class="fas fa-code-branch"></i> <span>Git / GitHub</span></div>
                     </div>
-                </div>
-            </div>
-            <div class="about-stats">
-                <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Years in ML & Biology</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">First-author Papers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Spatial Spots Analyzed</div>
                 </div>
             </div>
         </div>
@@ -154,17 +159,82 @@
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-placeholder">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">spVIPES: Spatial Variational Inference for Perturbation Effects</h3>
-        </div>
-    </div>
-</div>
         </div>
     </div>
 </section>
 
-<!-- Contact & Footer remain unchanged -->
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:c.novella.rausell@gmail.com">your@email.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>LinkedIn</h4>
+                        <a href="https://linkedin.com/in/nrclaudio" target="_blank">Connect with me</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/nrclaudio" target="_blank">View my code</a>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>&copy; 2025 Claudio. All rights reserved.</p>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/nrclaudio" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="js/script.js"></script>
+</body>
+</html>
