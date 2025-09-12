@@ -35,15 +35,19 @@ window.addEventListener('scroll', () => {
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        
+        // Only prevent default if target exists on current page
         if (target) {
+            e.preventDefault();
             const offsetTop = target.offsetTop - 70; // Account for fixed navbar
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
         }
+        // If no target exists, let the browser handle the default behavior
     });
 });
 
@@ -87,6 +91,358 @@ const animateElements = document.querySelectorAll('.skill-item, .project-card, .
 animateElements.forEach(el => {
     observer.observe(el);
 });
+
+// Repository QA Functionality
+let chunksData = [];
+let metaData = {};
+
+async function loadIndex() {
+    try {
+        const metaResponse = await fetch('public/index/meta.json');
+        metaData = await metaResponse.json();
+        
+        const chunksResponse = await fetch('public/index/chunks.jsonl');
+        const chunksText = await chunksResponse.text();
+        chunksData = chunksText.trim().split('\n').map(line => JSON.parse(line));
+        
+        const repoListEl = document.getElementById('repo-list');
+        const chunkCountEl = document.getElementById('chunk-count');
+        
+        if (repoListEl && chunkCountEl) {
+            repoListEl.textContent = metaData.repos.join(', ');
+            chunkCountEl.textContent = chunksData.length.toLocaleString();
+        }
+    } catch (error) {
+        console.error('Error loading index:', error);
+        const answerContent = document.getElementById('answer-content');
+        if (answerContent) {
+            answerContent.innerHTML = '<p style="color: #c62828;">Error loading index. Please ensure the index files are built.</p>';
+        }
+    }
+}
+
+function tokenize(text) {
+    return text.toLowerCase().match(/[a-z0-9_.#/\-]+/g) || [];
+}
+
+function computeBM25Score(queryTokens, docTokens, lexTerms, idf) {
+    const k1 = 1.2;
+    const b = 0.75;
+    const avgdl = 100;
+    const docLen = docTokens.length;
+    
+    const tokenFreq = {};
+    docTokens.forEach(token => {
+        tokenFreq[token] = (tokenFreq[token] || 0) + 1;
+    });
+    
+    let score = 0;
+    const matchedTerms = [];
+    
+    queryTokens.forEach(qt => {
+        if (tokenFreq[qt]) {
+            const tf = tokenFreq[qt];
+            const idfScore = idf[qt] || Math.log(1000);
+            const termScore = idfScore * (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * docLen / avgdl));
+            score += termScore;
+            matchedTerms.push(qt);
+        }
+    });
+    
+    lexTerms.forEach(term => {
+        if (queryTokens.includes(term) && !matchedTerms.includes(term)) {
+            const idfScore = idf[term] || Math.log(1000);
+            score += idfScore * 0.8;
+            matchedTerms.push(term);
+        }
+    });
+    
+    const queryMatchRatio = matchedTerms.length / queryTokens.length;
+    if (queryMatchRatio > 0.4) {
+        score *= (1 + queryMatchRatio * 0.3);
+    }
+    
+    return { score, matchedTerms };
+}
+
+function searchChunks(query) {
+    const queryTokens = tokenize(query);
+    if (queryTokens.length === 0) return [];
+    
+    const results = chunksData.map(chunk => {
+        const docTokens = tokenize(chunk.text);
+        const { score, matchedTerms } = computeBM25Score(
+            queryTokens, 
+            docTokens, 
+            chunk.lex_terms || [], 
+            metaData.idf || {}
+        );
+        
+        return {
+            ...chunk,
+            score,
+            matchedTerms
+        };
+    });
+    
+    results.sort((a, b) => b.score - a.score);
+    return results.slice(0, metaData.top_k || 12);
+}
+
+function highlightTerms(text, terms) {
+    let highlighted = text;
+    terms.forEach(term => {
+        const regex = new RegExp(`\\b${term}\\b`, 'gi');
+        highlighted = highlighted.replace(regex, match => `<mark>${match}</mark>`);
+    });
+    return highlighted;
+}
+
+function generateAnswer(results, query) {
+    if (results.length === 0 || results[0].score < 0.3) {
+        return {
+            answer: "I can't find solid evidence to answer this question in the indexed repositories.",
+            bullets: []
+        };
+    }
+    
+    const bullets = [];
+    const usedRepos = new Set();
+    
+    const categoryPriority = {
+        'doc': 1, 'code': 2, 'test': 3, 'workflow': 4,
+        'config': 5, 'docker': 6, 'makefile': 7, 'notebook': 8, 'script': 9
+    };
+    
+    const sortedResults = results.sort((a, b) => {
+        const scoreDiff = b.score - a.score;
+        if (Math.abs(scoreDiff) > 0.5) return scoreDiff;
+        const aPriority = categoryPriority[a.kind] || 10;
+        const bPriority = categoryPriority[b.kind] || 10;
+        return aPriority - bPriority;
+    });
+    
+    for (const result of sortedResults) {
+        if (bullets.length >= 6) break;
+        if (result.score < 0.5 && bullets.length > 2) break;
+        
+        const repoKey = `${result.repo}-${result.kind}`;
+        if (usedRepos.has(repoKey) && bullets.length > 2) continue;
+        
+        let bulletText = '';
+        const lines = result.text.split('\n').filter(line => line.trim());
+        
+        if (result.kind === 'doc' || result.kind === 'notebook') {
+            const relevantLines = lines.filter(line => 
+                result.matchedTerms.some(term => 
+                    line.toLowerCase().includes(term.toLowerCase())
+                )
+            ).slice(0, 2);
+            
+            if (relevantLines.length > 0) {
+                bulletText = relevantLines.join(' ').replace(/[#*`]/g, '').trim();
+            } else {
+                bulletText = lines[0].replace(/[#*`]/g, '').trim();
+            }
+        } else if (result.kind === 'code' || result.kind === 'test') {
+            if (result.symbol) {
+                bulletText = `Implements ${result.symbol} in ${result.repo}`;
+            } else {
+                const codePreview = lines
+                    .filter(line => !line.trim().startsWith('#') && line.trim())
+                    .slice(0, 2)
+                    .join(' ')
+                    .substring(0, 100);
+                bulletText = `Code in ${result.repo}: ${codePreview}`;
+            }
+        } else if (result.kind === 'workflow') {
+            const jobMatch = lines.find(line => line.includes('name:')) || lines[0];
+            bulletText = `CI/CD workflow: ${jobMatch.replace('name:', '').trim()}`;
+        } else if (result.kind === 'docker') {
+            bulletText = `Docker configuration for ${result.repo}`;
+        } else if (result.kind === 'config') {
+            bulletText = `Configuration in ${result.path}`;
+        }
+        
+        if (bulletText && bulletText.length > 20) {
+            if (bulletText.length > 150) {
+                bulletText = bulletText.substring(0, 147) + '...';
+            }
+            
+            const citation = {
+                text: bulletText,
+                url: `https://github.com/${result.owner}/${result.repo}/blob/${result.commit}/${result.path}#L${result.line_start}-L${result.line_end}`,
+                repo: result.repo,
+                kind: result.kind
+            };
+            
+            bullets.push(citation);
+            usedRepos.add(repoKey);
+        }
+    }
+    
+    if (bullets.length === 0) {
+        return {
+            answer: "I found some matches but couldn't extract clear evidence. Check the raw results below.",
+            bullets: []
+        };
+    }
+    
+    return {
+        answer: `Based on the code and documentation:`,
+        bullets
+    };
+}
+
+function getBadgeForKind(kind) {
+    const badges = {
+        'doc': '<span class="badge badge-doc">doc</span>',
+        'code': '<span class="badge badge-code">code</span>',
+        'test': '<span class="badge badge-test">test</span>',
+        'workflow': '<span class="badge badge-workflow">workflow</span>',
+        'docker': '<span class="badge badge-docker">docker</span>',
+        'config': '<span class="badge badge-config">config</span>',
+        'makefile': '<span class="badge badge-makefile">make</span>',
+        'notebook': '<span class="badge badge-notebook">notebook</span>',
+        'script': '<span class="badge badge-script">script</span>'
+    };
+    return badges[kind] || '';
+}
+
+function displayAnswer(answer, bullets) {
+    const answerSection = document.getElementById('answer-section');
+    const answerContent = document.getElementById('answer-content');
+    
+    if (!answerSection || !answerContent) return;
+    
+    let html = `<p>${answer}</p>`;
+    
+    if (bullets.length > 0) {
+        html += '<ul class="answer-bullets">';
+        bullets.forEach(bullet => {
+            const badge = getBadgeForKind(bullet.kind);
+            html += `<li>${badge} ${bullet.text} <a href="${bullet.url}" target="_blank" class="citation">[source]</a></li>`;
+        });
+        html += '</ul>';
+    }
+    
+    answerContent.innerHTML = html;
+    answerSection.style.display = 'block';
+}
+
+function displayResults(results) {
+    const resultsSection = document.getElementById('results-section');
+    const resultsContent = document.getElementById('results-content');
+    
+    if (!resultsSection || !resultsContent) return;
+    
+    if (results.length === 0) {
+        resultsContent.innerHTML = '<p>No results found.</p>';
+        resultsSection.style.display = 'block';
+        return;
+    }
+    
+    let html = '<div class="results-list">';
+    
+    results.forEach((result, index) => {
+        const preview = result.text.substring(0, 200).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const highlightedPreview = highlightTerms(preview, result.matchedTerms || []);
+        const badge = getBadgeForKind(result.kind);
+        
+        html += `
+            <div class="result-item">
+                <div class="result-header">
+                    <span class="result-number">#${index + 1}</span>
+                    ${badge}
+                    <span class="result-score">Score: ${result.score.toFixed(2)}</span>
+                    <span class="result-repo">${result.repo}/${result.path}</span>
+                </div>
+                <div class="result-preview">
+                    ${highlightedPreview}...
+                </div>
+                <div style="text-align: right; margin-top: 10px;">
+                    <a href="https://github.com/${result.owner}/${result.repo}/blob/${result.commit}/${result.path}#L${result.line_start}-L${result.line_end}" 
+                       target="_blank" class="result-link">
+                        View on GitHub ↗
+                    </a>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    resultsContent.innerHTML = html;
+    resultsSection.style.display = 'block';
+}
+
+function performSearch() {
+    const searchInput = document.getElementById('search-input');
+    const query = searchInput?.value.trim();
+    if (!query) return;
+    
+    const loading = document.getElementById('loading');
+    const answerSection = document.getElementById('answer-section');
+    const resultsSection = document.getElementById('results-section');
+    
+    if (loading) loading.style.display = 'block';
+    if (answerSection) answerSection.style.display = 'none';
+    if (resultsSection) resultsSection.style.display = 'none';
+    
+    setTimeout(() => {
+        const results = searchChunks(query);
+        const { answer, bullets } = generateAnswer(results, query);
+        
+        displayAnswer(answer, bullets);
+        displayResults(results);
+        
+        if (loading) loading.style.display = 'none';
+    }, 100);
+}
+
+// Initialize QA functionality
+function initializeQA() {
+    console.log('Initializing QA functionality...');
+    
+    const toggleBtn = document.getElementById('toggle-qa');
+    const qaInterface = document.getElementById('qa-interface');
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('search-input');
+    
+    console.log('Toggle button:', toggleBtn);
+    console.log('QA interface:', qaInterface);
+    
+    if (toggleBtn && qaInterface) {
+        console.log('Adding click listener to toggle button');
+        toggleBtn.addEventListener('click', (e) => {
+            console.log('Toggle button clicked!');
+            e.preventDefault();
+            
+            const isVisible = qaInterface.style.display !== 'none';
+            qaInterface.style.display = isVisible ? 'none' : 'block';
+            toggleBtn.textContent = isVisible ? 'Try the Repository Q&A' : 'Close Repository Q&A';
+            
+            console.log('Interface visibility changed to:', !isVisible);
+            
+            if (!isVisible && chunksData.length === 0) {
+                loadIndex();
+            }
+        });
+    } else {
+        console.error('Toggle button or QA interface not found');
+    }
+    
+    if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+}
 
 // Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
@@ -254,7 +610,7 @@ style.textContent = `
     }
     
     .nav-link.active {
-        color: #667eea !important;
+        color: #000 !important;
     }
     
     .nav-link.active::after {
@@ -293,7 +649,7 @@ function createParticles() {
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(102, 126, 234, 0.3);
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 50%;
             animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
             left: ${Math.random() * 100}%;
@@ -385,7 +741,7 @@ window.addEventListener('load', () => {
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -419,6 +775,11 @@ window.addEventListener('load', () => {
         loader.style.opacity = '0';
         setTimeout(() => loader.remove(), 500);
     }, 1000);
+});
+
+// Initialize QA functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeQA();
 });
 
 console.log('Portfolio loaded successfully! 🚀');

@@ -27,6 +27,8 @@
             <a href="#home" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
             <a href="#projects" class="nav-link">Projects</a>
+            <a href="#qa" class="nav-link">Q&A</a>
+            <a href="blog/index.html" class="nav-link">Blog</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="hamburger">
@@ -42,7 +44,7 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1 class="hero-title">
-                Hi, I'm <span class="highlight" style="color: #667eea; font-weight: 700;">Claudio</span>
+                Claudio
             </h1>
             <p class="hero-subtitle">
                 Computational Biologist & ML Researcher
@@ -107,18 +109,6 @@
         </div>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">
-                        <i class="fas fa-dna"></i>
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="project-content">
                     <h3 class="project-title">Graph ML for Metabolite Prediction</h3>
                     <p class="project-description">
@@ -135,18 +125,6 @@
             </div>
 
             <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="project-content">
                     <h3 class="project-title">Modeling Cell-Cell Communication</h3>
                     <p class="project-description">
@@ -160,18 +138,6 @@
             </div>
 
             <div class="project-card">
-                <div class="project-image">
-                    <div class="project-placeholder">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="project-overlay">
-                        <div class="project-links">
-                            <a href="https://github.com/nrclaudio/spVIPES" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="project-content">
                     <h3 class="project-title">spVIPES: Spatial Variational Inference for Perturbation Effects</h3>
                     <p class="project-description">
@@ -188,6 +154,53 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- Q&A Section -->
+<section id="qa" class="qa-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Ask About My Work</h2>
+            <p class="section-subtitle">Query my repositories and get cited answers</p>
+        </div>
+        <div class="qa-preview">
+            <div class="qa-cta">
+                <button id="toggle-qa" class="btn btn-primary">Try the Repository Q&A</button>
+            </div>
+            
+            <!-- Embedded QA Interface -->
+            <div id="qa-interface" class="qa-interface" style="display: none;">
+                <div class="qa-search-container">
+                    <div class="search-section">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="e.g., Optimal Transport"
+                            autocomplete="off"
+                        >
+                        <button id="search-btn">Search</button>
+                    </div>
+                    
+                    <div class="loading" id="loading">Searching repositories...</div>
+                    
+                    <div class="answer-section" id="answer-section">
+                        <h3>Answer</h3>
+                        <div id="answer-content"></div>
+                    </div>
+                    
+                    <div class="results-section" id="results-section">
+                        <h3>Raw Results</h3>
+                        <div id="results-content"></div>
+                    </div>
+                    
+                    <div class="qa-footer">
+                        <p>Indexes: <span id="repo-list"></span></p>
+                        <p><span id="chunk-count"></span> chunks indexed</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
