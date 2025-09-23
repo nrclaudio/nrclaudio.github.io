@@ -164,6 +164,15 @@ a {
     animation: slideInLeft 1s ease-out;
 }
 
+.hero-kicker {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 20px;
