@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -27,6 +29,7 @@
             <a href="#home" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
             <a href="#projects" class="nav-link">Projects</a>
+            <a href="#quests" class="nav-link">Side Quests</a>
             <a href="#qa" class="nav-link">Q&A</a>
             <a href="blog/index.html" class="nav-link">Blog</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -43,16 +46,78 @@
 <section id="home" class="hero">
     <div class="hero-container">
         <div class="hero-content">
-            <p class="hero-kicker">Graph ML | Bio GenAI</p>
-
+            <p class="hero-kicker">Computational biology · Generative ML</p>
+            <h1 class="hero-title">Claudio<br>Novella Rausell</h1>
+            <p class="hero-role">making biology a little more predictable</p>
             <p class="hero-description">
-                I build models that bridge AI and biology, from generative modeling to omics-driven discovery.
+                I build models that bridge AI and biology, from generative modeling
+                to omics-driven discovery, one latent variable at a time.
             </p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">See the Work</a>
-                <a href="#contact" class="btn btn-secondary">Start a Collaboration</a>
+                <a href="#projects" class="btn btn-primary">See the work</a>
+                <a href="#qa" class="btn btn-secondary">Ask about my repos</a>
             </div>
         </div>
+
+        <figure class="hero-figure" aria-hidden="true">
+            <span class="tape tape-1"></span>
+            <span class="tape tape-2"></span>
+            <svg viewBox="0 0 340 240" role="img" aria-label="A scatter plot of research interests: foundation models, genomic models, single-cell and spatial, multiomics, and generative models">
+                <!-- axes -->
+                <line x1="34" y1="14" x2="34" y2="214" stroke="#1b2a3a" stroke-width="1.2"/>
+                <line x1="34" y1="214" x2="324" y2="214" stroke="#1b2a3a" stroke-width="1.2"/>
+
+                <!-- foundation models (steel blue) -->
+                <g fill="#3f6fa3">
+                    <circle class="dot" cx="72"  cy="52"  r="5" style="animation-delay:.0s"/>
+                    <circle class="dot" cx="88"  cy="46"  r="4" style="animation-delay:.5s"/>
+                    <circle class="dot" cx="98"  cy="60"  r="4" style="animation-delay:1.0s"/>
+                    <circle class="dot" cx="78"  cy="66"  r="3" style="animation-delay:1.5s"/>
+                    <circle class="dot" cx="94"  cy="72"  r="3" style="animation-delay:2.0s"/>
+                </g>
+                <!-- genomic models (teal) -->
+                <g fill="#2e6f6a">
+                    <circle class="dot" cx="240" cy="58"  r="5" style="animation-delay:.3s"/>
+                    <circle class="dot" cx="256" cy="52"  r="4" style="animation-delay:.8s"/>
+                    <circle class="dot" cx="268" cy="64"  r="4" style="animation-delay:1.3s"/>
+                    <circle class="dot" cx="248" cy="72"  r="3" style="animation-delay:1.8s"/>
+                    <circle class="dot" cx="264" cy="76"  r="3" style="animation-delay:2.3s"/>
+                </g>
+                <!-- single-cell & spatial (ink) -->
+                <g fill="#1b2a3a">
+                    <circle class="dot" cx="150" cy="110" r="5" style="animation-delay:.15s"/>
+                    <circle class="dot" cx="166" cy="104" r="4" style="animation-delay:.65s"/>
+                    <circle class="dot" cx="178" cy="118" r="4" style="animation-delay:1.15s"/>
+                    <circle class="dot" cx="154" cy="126" r="3" style="animation-delay:1.65s"/>
+                    <circle class="dot" cx="170" cy="130" r="3" style="animation-delay:2.15s"/>
+                    <circle class="dot" cx="160" cy="116" r="3" style="animation-delay:2.6s"/>
+                </g>
+                <!-- multiomics (ochre) -->
+                <g fill="#b07d2b">
+                    <circle class="dot" cx="80"  cy="160" r="5" style="animation-delay:.4s"/>
+                    <circle class="dot" cx="96"  cy="154" r="4" style="animation-delay:.9s"/>
+                    <circle class="dot" cx="106" cy="168" r="4" style="animation-delay:1.4s"/>
+                    <circle class="dot" cx="84"  cy="176" r="3" style="animation-delay:1.9s"/>
+                    <circle class="dot" cx="100" cy="180" r="3" style="animation-delay:2.4s"/>
+                </g>
+                <!-- generative models (red) -->
+                <g fill="#c0442b">
+                    <circle class="dot" cx="243" cy="156" r="5" style="animation-delay:.25s"/>
+                    <circle class="dot" cx="259" cy="150" r="4" style="animation-delay:.75s"/>
+                    <circle class="dot" cx="270" cy="164" r="4" style="animation-delay:1.25s"/>
+                    <circle class="dot" cx="248" cy="174" r="3" style="animation-delay:1.75s"/>
+                    <circle class="dot" cx="264" cy="178" r="3" style="animation-delay:2.25s"/>
+                </g>
+            </svg>
+            <ul class="fig-legend">
+                <li><span class="sw" style="background:#3f6fa3"></span>foundation models</li>
+                <li><span class="sw" style="background:#2e6f6a"></span>genomic models</li>
+                <li><span class="sw" style="background:#1b2a3a"></span>single-cell &amp; spatial</li>
+                <li><span class="sw" style="background:#b07d2b"></span>multiomics</li>
+                <li><span class="sw" style="background:#c0442b"></span>generative models</li>
+            </ul>
+            <figcaption>fig. 0 &middot; the things I&rsquo;m curious about, projected to 2D</figcaption>
+        </figure>
     </div>
     <div class="scroll-indicator">
         <div class="scroll-arrow"></div>
@@ -62,9 +127,11 @@
 <!-- About Section -->
 <section id="about" class="about">
     <div class="container">
+        <aside class="margin-note" style="top: 130px; right: 24px;">how do different omics actually talk to each other?</aside>
         <div class="section-header">
+            <div class="fig-label">Fig. 01 &middot; About</div>
             <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">Researcher. Problem-solver. Creative.</p>
+            <p class="section-subtitle">// researcher · problem-solver · perpetually curious</p>
         </div>
         <div class="about-content">
             <div class="about-text">
@@ -100,11 +167,12 @@
 <section id="projects" class="projects">
     <div class="container">
         <div class="section-header">
+            <div class="fig-label">Fig. 02 &middot; Projects</div>
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">"Problems worthy of attack prove their worth by fighting back"</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card">
+            <a class="project-card" href="https://github.com/nrclaudio/GAZE" target="_blank" rel="noopener">
                 <div class="project-content">
                     <h3 class="project-title">Graph ML for Metabolite Prediction</h3>
                     <p class="project-description">
@@ -118,9 +186,9 @@
                         <span class="tech-tag">Spatial Transcriptomics</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="project-card">
+            <a class="project-card" href="https://github.com/nrclaudio/spatial-pkd" target="_blank" rel="noopener">
                 <div class="project-content">
                     <h3 class="project-title">Modeling Cell-Cell Communication</h3>
                     <p class="project-description">
@@ -131,25 +199,96 @@
                         <span class="tech-tag">Tensor decomposition</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="project-card">
+            <a class="project-card" href="https://github.com/nrclaudio/spVIPES" target="_blank" rel="noopener">
                 <div class="project-content">
                     <h3 class="project-title">spVIPES: shared-private Variational Inference with Product of Experts</h3>
                     <p class="project-description">
                         I designed spVIPES, a model that disentangles biological variation.
-                        The architecture combines variational inference with a novel product-of-experts based alignment leveraging optimal transportto compare any two conditions.
+                        The architecture combines variational inference with a novel product-of-experts based alignment leveraging optimal transport to compare any two conditions.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Variational Inference</span>
                         <span class="tech-tag">Optimal Transport</span>
                         <span class="tech-tag">Disentanglement</span>
                         <span class="tech-tag">Generative ML</span>
-
                     </div>
                 </div>
-            </div>
+            </a>
 
+            <a class="project-card" href="https://github.com/nrclaudio/MKA" target="_blank" rel="noopener">
+                <div class="project-content">
+                    <h3 class="project-title">MKA: Mouse Kidney Atlas</h3>
+                    <p class="project-description">
+                        A comprehensive single-cell atlas of the healthy mouse kidney, integrating eight studies
+                        with scVI/scANVI and scHPL to auto-label cell populations and surface robust markers
+                        for poorly described cell types.
+                    </p>
+                    <div class="project-technologies">
+                        <span class="tech-tag">Single-cell</span>
+                        <span class="tech-tag">scVI / scANVI</span>
+                        <span class="tech-tag">Atlas Integration</span>
+                        <span class="tech-tag">Cell-type Annotation</span>
+                    </div>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/nrclaudio/ASTRID" target="_blank" rel="noopener">
+                <div class="project-content">
+                    <h3 class="project-title">ASTRID: Spaceflight Impact Disentanglement</h3>
+                    <p class="project-description">
+                        A machine-learning model that disentangles the transcriptional impact of spaceflight
+                        (radiation and microgravity) from NASA GeneLab data, to anticipate health
+                        risks for astronauts on long missions.
+                    </p>
+                    <div class="project-technologies">
+                        <span class="tech-tag">Spatial Transcriptomics</span>
+                        <span class="tech-tag">Disentanglement</span>
+                        <span class="tech-tag">biolord</span>
+                        <span class="tech-tag">Space Biology</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Side Quests Section -->
+<section id="quests" class="quests">
+    <div class="container">
+        <div class="section-header">
+            <div class="fig-label">Fig. 03 &middot; Side Quests</div>
+            <h2 class="section-title">Side Quests</h2>
+            <p class="section-subtitle">// nights-and-weekends experiments, built for the joy of it</p>
+        </div>
+        <div class="quest-grid">
+            <a class="quest-card" href="https://github.com/nrclaudio/ascii-art-transformer" target="_blank" rel="noopener">
+                <div class="quest-name">ascii-art-transformer</div>
+                <p class="quest-desc">A BERT-style Transformer that turns images into ASCII art, trained on generated geometry and shading, with a Streamlit demo.</p>
+                <span class="quest-arrow">view repo &#8599;</span>
+            </a>
+            <a class="quest-card" href="https://github.com/nrclaudio/covid19-stream-mood" target="_blank" rel="noopener">
+                <div class="quest-name">covid19-stream-mood</div>
+                <p class="quest-desc">Inferring public mood in real time from streaming Twitter data during the pandemic.</p>
+                <span class="quest-arrow">view repo &#8599;</span>
+            </a>
+            <a class="quest-card" href="https://github.com/nrclaudio/GuessLib" target="_blank" rel="noopener">
+                <div class="quest-name">GuessLib</div>
+                <p class="quest-desc">An open-access tool for recognizing NGS library types, wrapped in a small Django app.</p>
+                <span class="quest-arrow">view repo &#8599;</span>
+            </a>
+            <a class="quest-card" href="https://github.com/nrclaudio/dna-python" target="_blank" rel="noopener">
+                <div class="quest-name">dna-python</div>
+                <p class="quest-desc">A tiny Python class for modeling DNA sequences, the kind of thing you write to really understand something.</p>
+                <span class="quest-arrow">view repo &#8599;</span>
+            </a>
+            <a class="quest-card" href="https://github.com/nrclaudio/neetcode-submissions" target="_blank" rel="noopener">
+                <div class="quest-name">neetcode-submissions</div>
+                <p class="quest-desc">Working through NeetCode.io, one algorithm problem at a time.</p>
+                <span class="quest-arrow">view repo &#8599;</span>
+            </a>
         </div>
     </div>
 </section>
@@ -157,44 +296,58 @@
 <!-- Q&A Section -->
 <section id="qa" class="qa-section">
     <div class="container">
+        <aside class="margin-note" style="top: 8px; right: 24px;">try something specific &darr;</aside>
         <div class="section-header">
+            <div class="fig-label">Fig. 04 &middot; Ask my repositories</div>
             <h2 class="section-title">Ask About My Work</h2>
-            <p class="section-subtitle">Query my repositories and get cited answers</p>
+            <p class="section-subtitle">// query the source, get answers cited back to the line</p>
         </div>
         <div class="qa-preview">
-            <div class="qa-cta">
-                <button id="toggle-qa" class="btn btn-primary">Try the Repository Q&A</button>
-            </div>
-            
-            <!-- Embedded QA Interface -->
-            <div id="qa-interface" class="qa-interface" style="display: none;">
-                <div class="qa-search-container">
-                    <div class="search-section">
-                        <input 
-                            type="text" 
-                            id="search-input" 
-                            placeholder="e.g., Optimal Transport"
-                            autocomplete="off"
-                        >
-                        <button id="search-btn">Search</button>
+            <p class="qa-note">
+                <b>How this works:</b> lexical <b>BM25</b> retrieval over my public repositories.
+                No LLM, no hallucinations. Every claim links to the exact lines it came from,
+                so you can check my work.
+            </p>
+
+            <!-- Notebook query cell -->
+            <div class="notebook" id="qa-notebook">
+                <div class="cell">
+                    <div class="cell-gutter">In&#8202;[1]:</div>
+                    <div class="cell-body">
+                        <div class="cell-input">
+                            <span class="prompt">&gt;&gt;&gt;</span>
+                            <input
+                                type="text"
+                                id="search-input"
+                                placeholder="ask.search(&quot;optimal transport&quot;)"
+                                autocomplete="off"
+                            >
+                            <button id="search-btn">run &#9654;</button>
+                        </div>
+                        <div class="example-chips">
+                            <span class="chip-label">try one of these:</span>
+                            <span class="chip" data-q="optimal transport">optimal transport</span>
+                            <span class="chip" data-q="how does spVIPES disentangle variation">spVIPES disentanglement</span>
+                            <span class="chip" data-q="product of experts">product of experts</span>
+                            <span class="chip" data-q="variational inference">variational inference</span>
+                            <span class="chip" data-q="ascii art transformer model">ascii-art transformer</span>
+                            <span class="chip" data-q="how are the tests run">how tests are run</span>
+                        </div>
                     </div>
-                    
-                    <div class="loading" id="loading">Searching repositories...</div>
-                    
-                    <div class="answer-section" id="answer-section">
+                </div>
+
+                <div class="loading" id="loading">running retrieval over the corpus&hellip;</div>
+
+                <div class="cell answer-section" id="answer-section">
+                    <div class="cell-gutter out">Out[1]:</div>
+                    <div class="cell-body">
                         <h3>Answer</h3>
                         <div id="answer-content"></div>
                     </div>
-                    
-                    <div class="results-section" id="results-section">
-                        <h3>Raw Results</h3>
-                        <div id="results-content"></div>
-                    </div>
-                    
-                    <div class="qa-footer">
-                        <p>Indexes: <span id="repo-list"></span></p>
-                        <p><span id="chunk-count"></span> chunks indexed</p>
-                    </div>
+                </div>
+
+                <div class="qa-footer">
+                    <p>corpus: indexing <span id="chunk-count"></span> chunks across <span id="repo-list"></span></p>
                 </div>
             </div>
         </div>

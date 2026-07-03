@@ -19,17 +19,9 @@ navLinks.forEach(link => {
     });
 });
 
-// Navbar scroll effect
+// Navbar scroll effect (styling handled in CSS)
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.classList.remove('scrolled');
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 100);
 });
 
 // Smooth scrolling for navigation links
@@ -327,7 +319,7 @@ function displayAnswer(answer, bullets) {
     }
     
     answerContent.innerHTML = html;
-    answerSection.style.display = 'block';
+    answerSection.style.display = 'grid';
 }
 
 function displayResults(results) {
@@ -375,72 +367,74 @@ function displayResults(results) {
     resultsSection.style.display = 'block';
 }
 
-function performSearch() {
+async function performSearch() {
     const searchInput = document.getElementById('search-input');
     const query = searchInput?.value.trim();
     if (!query) return;
-    
+
     const loading = document.getElementById('loading');
     const answerSection = document.getElementById('answer-section');
     const resultsSection = document.getElementById('results-section');
-    
+
     if (loading) loading.style.display = 'block';
     if (answerSection) answerSection.style.display = 'none';
     if (resultsSection) resultsSection.style.display = 'none';
-    
-    setTimeout(() => {
-        const results = searchChunks(query);
-        const { answer, bullets } = generateAnswer(results, query);
-        
-        displayAnswer(answer, bullets);
-        displayResults(results);
-        
-        if (loading) loading.style.display = 'none';
-    }, 100);
+
+    // Make sure the index is loaded (e.g. chip clicked before scroll-load)
+    await ensureIndexLoaded();
+
+    const results = searchChunks(query);
+    const { answer, bullets } = generateAnswer(results, query);
+
+    displayAnswer(answer, bullets);
+
+    if (loading) loading.style.display = 'none';
 }
 
 // Initialize QA functionality
+let indexLoadPromise = null;
+function ensureIndexLoaded() {
+    if (!indexLoadPromise) {
+        indexLoadPromise = loadIndex();
+    }
+    return indexLoadPromise;
+}
+
 function initializeQA() {
-    console.log('Initializing QA functionality...');
-    
-    const toggleBtn = document.getElementById('toggle-qa');
-    const qaInterface = document.getElementById('qa-interface');
+    const notebook = document.getElementById('qa-notebook');
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('search-input');
-    
-    console.log('Toggle button:', toggleBtn);
-    console.log('QA interface:', qaInterface);
-    
-    if (toggleBtn && qaInterface) {
-        console.log('Adding click listener to toggle button');
-        toggleBtn.addEventListener('click', (e) => {
-            console.log('Toggle button clicked!');
-            e.preventDefault();
-            
-            const isVisible = qaInterface.style.display !== 'none';
-            qaInterface.style.display = isVisible ? 'none' : 'block';
-            toggleBtn.textContent = isVisible ? 'Try the Repository Q&A' : 'Close Repository Q&A';
-            
-            console.log('Interface visibility changed to:', !isVisible);
-            
-            if (!isVisible && chunksData.length === 0) {
-                loadIndex();
-            }
-        });
-    } else {
-        console.error('Toggle button or QA interface not found');
-    }
-    
-    if (searchBtn) {
-        searchBtn.addEventListener('click', performSearch);
-    }
-    
+    const chips = document.querySelectorAll('.chip');
+
+    if (searchBtn) searchBtn.addEventListener('click', performSearch);
+
     if (searchInput) {
+        searchInput.addEventListener('focus', ensureIndexLoaded);
         searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
+            if (e.key === 'Enter') performSearch();
         });
+    }
+
+    // Example question chips: fill the input and run
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const q = chip.getAttribute('data-q') || chip.textContent;
+            if (searchInput) searchInput.value = q;
+            performSearch();
+        });
+    });
+
+    // Lazily load the index the first time the cell scrolls into view
+    if (notebook && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    ensureIndexLoaded();
+                    obs.disconnect();
+                }
+            });
+        }, { rootMargin: '0px 0px 200px 0px' });
+        io.observe(notebook);
     }
 }
 
@@ -619,55 +613,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const rate = scrolled * -0.5;
-        hero.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-// Particle animation for hero background
-function createParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles';
-    particlesContainer.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        pointer-events: none;
-    `;
-    
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 50%;
-            animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 2}s;
-        `;
-        particlesContainer.appendChild(particle);
-    }
-    
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.appendChild(particlesContainer);
-    }
-}
-
-// Initialize particles when page loads
-window.addEventListener('load', createParticles);
-
 // Skills animation on scroll
 const skillItems = document.querySelectorAll('.skill-item');
 const skillObserver = new IntersectionObserver((entries) => {
@@ -730,52 +675,6 @@ sectionStyle.textContent = `
     }
 `;
 document.head.appendChild(sectionStyle);
-
-// Loading screen
-window.addEventListener('load', () => {
-    const loader = document.createElement('div');
-    loader.className = 'loader';
-    loader.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        transition: opacity 0.5s ease;
-    `;
-    
-    const loaderContent = document.createElement('div');
-    loaderContent.innerHTML = `
-        <div style="text-align: center; color: white;">
-            <div style="width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
-            <p style="font-size: 18px; font-weight: 500;">Loading Portfolio...</p>
-        </div>
-    `;
-    
-    loader.appendChild(loaderContent);
-    document.body.appendChild(loader);
-    
-    // Add spin animation
-    const spinStyle = document.createElement('style');
-    spinStyle.textContent = `
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(spinStyle);
-    
-    // Remove loader after a short delay
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 500);
-    }, 1000);
-});
 
 // Initialize QA functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
