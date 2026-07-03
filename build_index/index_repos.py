@@ -13,6 +13,9 @@ REPO_SOURCES = [
     {"name": "spVIPES", "url": "https://github.com/nrclaudio/spVIPES.git", "owner": "nrclaudio"},
     {"name": "MKA", "url": "https://github.com/nrclaudio/MKA.git", "owner": "nrclaudio"},
     {"name": "ASTRID", "url": "https://github.com/nrclaudio/ASTRID.git", "owner": "nrclaudio"},
+    {"name": "GAZE", "url": "https://github.com/nrclaudio/GAZE.git", "owner": "nrclaudio"},
+    {"name": "spatial-pkd", "url": "https://github.com/nrclaudio/spatial-pkd.git", "owner": "nrclaudio"},
+    {"name": "ascii-art-transformer", "url": "https://github.com/nrclaudio/ascii-art-transformer.git", "owner": "nrclaudio"},
 ]
 MAX_CHUNKS = 20000
 TOP_K = 12
@@ -61,20 +64,45 @@ def should_index_file(path):
     return None
 
 def extract_notebook_content(path):
+    """Extract only code cells from a notebook; markdown/prose cells are skipped."""
     try:
         with open(path, 'r', encoding='utf-8') as f:
             nb = json.load(f)
-        
+
         content = []
         for cell in nb.get('cells', []):
-            if cell['cell_type'] == 'markdown':
-                content.append(''.join(cell.get('source', [])))
-            elif cell['cell_type'] == 'code':
-                content.append('```python\n' + ''.join(cell.get('source', [])) + '\n```')
-        
+            if cell.get('cell_type') == 'code':
+                src = ''.join(cell.get('source', []))
+                if src.strip():
+                    content.append(src)
+
         return '\n\n'.join(content)
     except:
         return ""
+
+
+# Boilerplate template docs (cookiecutter / scverse / GitHub defaults) that add
+# noise to search results without describing the actual project.
+TEMPLATE_DOC_NAMES = {
+    'changelog.md', 'contributing.md', 'code_of_conduct.md', 'conduct.md',
+    'authors.md', 'license', 'license.md', 'license.txt', 'license.rst',
+    'template_usage.md', 'making_your_own_package.md',
+}
+TEMPLATE_MARKERS = (
+    'cookiecutter', 'keepachangelog.com', 'towncrier release notes',
+    'scverse cookiecutter', 'contributor covenant',
+)
+
+
+def looks_like_template_doc(path, content):
+    name = path.name.lower()
+    if name in TEMPLATE_DOC_NAMES:
+        return True
+    path_str = str(path).lower()
+    if 'template' in path_str:
+        return True
+    low = content.lower()
+    return any(marker in low for marker in TEMPLATE_MARKERS)
 
 def chunk_text(text, kind, path):
     chunks = []
@@ -214,7 +242,11 @@ def main():
                 
                 if not content.strip():
                     continue
-                
+
+                # Skip boilerplate template docs (they surface as noise in search).
+                if kind == 'doc' and looks_like_template_doc(file_path, content):
+                    continue
+
                 rel_path = file_path.relative_to(repo_path)
                 chunks = chunk_text(content, kind, rel_path)
                 
