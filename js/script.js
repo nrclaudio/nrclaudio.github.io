@@ -604,9 +604,9 @@ style.textContent = `
     }
     
     .nav-link.active {
-        color: #000 !important;
+        color: #c9c9c9 !important;
     }
-    
+
     .nav-link.active::after {
         width: 100% !important;
     }

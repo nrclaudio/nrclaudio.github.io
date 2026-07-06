@@ -11,11 +11,7 @@
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Type is the system monospace stack; no web font needed -->
 </head>
 <body>
 
@@ -60,31 +56,29 @@
         </div>
 
         <figure class="hero-figure" aria-hidden="true">
-            <span class="tape tape-1"></span>
-            <span class="tape tape-2"></span>
             <svg viewBox="0 0 340 240" role="img" aria-label="A scatter plot of research interests: foundation models, genomic models, single-cell and spatial, multiomics, and generative models">
                 <!-- axes -->
-                <line x1="34" y1="14" x2="34" y2="214" stroke="#1b2a3a" stroke-width="1.2"/>
-                <line x1="34" y1="214" x2="324" y2="214" stroke="#1b2a3a" stroke-width="1.2"/>
+                <line x1="34" y1="14" x2="34" y2="214" stroke="#2a2a2a" stroke-width="1"/>
+                <line x1="34" y1="214" x2="324" y2="214" stroke="#2a2a2a" stroke-width="1"/>
 
-                <!-- foundation models (steel blue) -->
-                <g fill="#3f6fa3">
+                <!-- foundation models (phosphor green) -->
+                <g fill="#8fd48f">
                     <circle class="dot" cx="72"  cy="52"  r="5" style="animation-delay:.0s"/>
                     <circle class="dot" cx="88"  cy="46"  r="4" style="animation-delay:.5s"/>
                     <circle class="dot" cx="98"  cy="60"  r="4" style="animation-delay:1.0s"/>
                     <circle class="dot" cx="78"  cy="66"  r="3" style="animation-delay:1.5s"/>
                     <circle class="dot" cx="94"  cy="72"  r="3" style="animation-delay:2.0s"/>
                 </g>
-                <!-- genomic models (teal) -->
-                <g fill="#2e6f6a">
+                <!-- genomic models (cyan) -->
+                <g fill="#5aa39a">
                     <circle class="dot" cx="240" cy="58"  r="5" style="animation-delay:.3s"/>
                     <circle class="dot" cx="256" cy="52"  r="4" style="animation-delay:.8s"/>
                     <circle class="dot" cx="268" cy="64"  r="4" style="animation-delay:1.3s"/>
                     <circle class="dot" cx="248" cy="72"  r="3" style="animation-delay:1.8s"/>
                     <circle class="dot" cx="264" cy="76"  r="3" style="animation-delay:2.3s"/>
                 </g>
-                <!-- single-cell & spatial (ink) -->
-                <g fill="#1b2a3a">
+                <!-- single-cell & spatial (grey) -->
+                <g fill="#9a9a9a">
                     <circle class="dot" cx="150" cy="110" r="5" style="animation-delay:.15s"/>
                     <circle class="dot" cx="166" cy="104" r="4" style="animation-delay:.65s"/>
                     <circle class="dot" cx="178" cy="118" r="4" style="animation-delay:1.15s"/>
@@ -92,16 +86,16 @@
                     <circle class="dot" cx="170" cy="130" r="3" style="animation-delay:2.15s"/>
                     <circle class="dot" cx="160" cy="116" r="3" style="animation-delay:2.6s"/>
                 </g>
-                <!-- multiomics (ochre) -->
-                <g fill="#b07d2b">
+                <!-- multiomics (amber) -->
+                <g fill="#c9a35a">
                     <circle class="dot" cx="80"  cy="160" r="5" style="animation-delay:.4s"/>
                     <circle class="dot" cx="96"  cy="154" r="4" style="animation-delay:.9s"/>
                     <circle class="dot" cx="106" cy="168" r="4" style="animation-delay:1.4s"/>
                     <circle class="dot" cx="84"  cy="176" r="3" style="animation-delay:1.9s"/>
                     <circle class="dot" cx="100" cy="180" r="3" style="animation-delay:2.4s"/>
                 </g>
-                <!-- generative models (red) -->
-                <g fill="#c0442b">
+                <!-- generative models (terracotta) -->
+                <g fill="#b5654d">
                     <circle class="dot" cx="243" cy="156" r="5" style="animation-delay:.25s"/>
                     <circle class="dot" cx="259" cy="150" r="4" style="animation-delay:.75s"/>
                     <circle class="dot" cx="270" cy="164" r="4" style="animation-delay:1.25s"/>
@@ -110,13 +104,13 @@
                 </g>
             </svg>
             <ul class="fig-legend">
-                <li><span class="sw" style="background:#3f6fa3"></span>foundation models</li>
-                <li><span class="sw" style="background:#2e6f6a"></span>genomic models</li>
-                <li><span class="sw" style="background:#1b2a3a"></span>single-cell &amp; spatial</li>
-                <li><span class="sw" style="background:#b07d2b"></span>multiomics</li>
-                <li><span class="sw" style="background:#c0442b"></span>generative models</li>
+                <li><span class="sw" style="background:#8fd48f"></span>foundation models</li>
+                <li><span class="sw" style="background:#5aa39a"></span>genomic models</li>
+                <li><span class="sw" style="background:#9a9a9a"></span>single-cell &amp; spatial</li>
+                <li><span class="sw" style="background:#c9a35a"></span>multiomics</li>
+                <li><span class="sw" style="background:#b5654d"></span>generative models</li>
             </ul>
-            <figcaption>fig. 0 &middot; the things I&rsquo;m curious about, projected to 2D</figcaption>
+            <figcaption>26 points &middot; 5 clusters &middot; nonlinear projection</figcaption>
         </figure>
     </div>
     <div class="scroll-indicator">
