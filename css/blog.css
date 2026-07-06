@@ -56,11 +56,13 @@
     padding: 28px 26px;
     box-shadow: none;
     border: 1px solid var(--line);
-    transition: border-color 0.16s ease, transform 0.18s ease;
+    border-top: 2px solid var(--orange-dim);
+    transition: border-color 0.16s ease, border-top-color 0.16s ease, transform 0.18s ease;
 }
 
 .post-card:hover {
     border-color: var(--blue-dim);
+    border-top-color: var(--orange);
     transform: translateY(-2px);
 }
 

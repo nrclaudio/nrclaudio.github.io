@@ -221,6 +221,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     position: relative;
     background: var(--panel);
     border: 1px solid var(--line);
+    border-top: 2px solid var(--orange-dim);
     padding: 0;
     animation: rise 0.7s ease-out 0.1s both;
 }
@@ -345,9 +346,10 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     padding: 14px 16px;
     background: var(--panel);
     border: 1px solid var(--line);
-    transition: border-color 0.16s ease, color 0.16s ease;
+    border-top: 2px solid var(--orange-dim);
+    transition: border-color 0.16s ease, border-top-color 0.16s ease, color 0.16s ease;
 }
-.skill-item:hover { border-color: var(--blue-dim); }
+.skill-item:hover { border-color: var(--blue-dim); border-top-color: var(--orange); }
 .skill-item i { font-size: 0.95rem; color: var(--dim); transition: color 0.16s ease, text-shadow 0.16s ease; }
 .skill-item:hover i { color: var(--glow); text-shadow: 0 0 8px rgba(126, 200, 245,0.4); }
 .skill-item span { font-family: var(--mono); font-size: 0.8rem; color: var(--fg); }
@@ -367,6 +369,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     position: relative;
     background: var(--panel);
     border: 1px solid var(--line);
+    border-top: 2px solid var(--orange-dim);
     padding: 26px 24px;
     transition: border-color 0.18s ease, transform 0.18s ease;
     counter-increment: project;
@@ -397,6 +400,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 }
 .project-card:hover {
     border-color: var(--blue-dim);
+    border-top-color: var(--orange);
     transform: translateY(-2px);
 }
 .project-title {
@@ -430,10 +434,11 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     color: inherit;
     background: var(--panel);
     border: 1px solid var(--line);
+    border-top: 2px solid var(--orange-dim);
     padding: 20px 18px;
-    transition: border-color 0.16s ease, transform 0.16s ease;
+    transition: border-color 0.16s ease, border-top-color 0.16s ease, transform 0.16s ease;
 }
-.quest-card:hover { border-color: var(--blue-dim); transform: translateY(-2px); }
+.quest-card:hover { border-color: var(--blue-dim); border-top-color: var(--orange); transform: translateY(-2px); }
 .quest-name {
     display: flex;
     align-items: center;
@@ -468,6 +473,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 .notebook {
     background: var(--panel);
     border: 1px solid var(--line);
+    border-top: 2px solid var(--orange-dim);
 }
 
 .cell {
@@ -738,7 +744,7 @@ mark { background: rgba(126, 200, 245,0.16); color: var(--glow); padding: 0 2px;
     40% { transform: translateY(-8px) translateX(-50%); }
     60% { transform: translateY(-4px) translateX(-50%); }
 }
-@keyframes twinkle { 0%, 100% { opacity: 0.85; } 50% { opacity: 0.35; } }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.72; } }
 
 .animate-in { animation: rise 0.6s ease forwards; }
 

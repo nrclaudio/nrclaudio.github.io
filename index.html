@@ -57,60 +57,69 @@
 
         <figure class="hero-figure" aria-hidden="true">
             <svg viewBox="0 0 340 240" role="img" aria-label="A scatter plot of research interests: foundation models, genomic models, single-cell and spatial, multiomics, and generative models">
+                <!-- faint grid -->
+                <g stroke="#181818" stroke-width="1">
+                    <line x1="97"  y1="14" x2="97"  y2="214"/>
+                    <line x1="160" y1="14" x2="160" y2="214"/>
+                    <line x1="223" y1="14" x2="223" y2="214"/>
+                    <line x1="286" y1="14" x2="286" y2="214"/>
+                    <line x1="34" y1="64"  x2="324" y2="64"/>
+                    <line x1="34" y1="114" x2="324" y2="114"/>
+                    <line x1="34" y1="164" x2="324" y2="164"/>
+                </g>
                 <!-- axes -->
-                <line x1="34" y1="14" x2="34" y2="214" stroke="#2a2a2a" stroke-width="1"/>
-                <line x1="34" y1="214" x2="324" y2="214" stroke="#2a2a2a" stroke-width="1"/>
+                <line x1="34" y1="14" x2="34" y2="214" stroke="#3a3a3a" stroke-width="1"/>
+                <line x1="34" y1="214" x2="324" y2="214" stroke="#3a3a3a" stroke-width="1"/>
 
                 <!-- foundation models (gulf blue) -->
-                <g fill="#7ec8f0">
-                    <circle class="dot" cx="72"  cy="52"  r="5" style="animation-delay:.0s"/>
-                    <circle class="dot" cx="88"  cy="46"  r="4" style="animation-delay:.5s"/>
-                    <circle class="dot" cx="98"  cy="60"  r="4" style="animation-delay:1.0s"/>
-                    <circle class="dot" cx="78"  cy="66"  r="3" style="animation-delay:1.5s"/>
-                    <circle class="dot" cx="94"  cy="72"  r="3" style="animation-delay:2.0s"/>
+                <g fill="#86cdf5">
+                    <circle class="dot" cx="74"  cy="54"  r="7" style="animation-delay:.0s"/>
+                    <circle class="dot" cx="94"  cy="49"  r="6" style="animation-delay:.5s"/>
+                    <circle class="dot" cx="103" cy="64"  r="6" style="animation-delay:1.0s"/>
+                    <circle class="dot" cx="80"  cy="71"  r="5" style="animation-delay:1.5s"/>
+                    <circle class="dot" cx="98"  cy="76"  r="5" style="animation-delay:2.0s"/>
                 </g>
-                <!-- genomic models (cyan) -->
-                <g fill="#5aa39a">
-                    <circle class="dot" cx="240" cy="58"  r="5" style="animation-delay:.3s"/>
-                    <circle class="dot" cx="256" cy="52"  r="4" style="animation-delay:.8s"/>
-                    <circle class="dot" cx="268" cy="64"  r="4" style="animation-delay:1.3s"/>
-                    <circle class="dot" cx="248" cy="72"  r="3" style="animation-delay:1.8s"/>
-                    <circle class="dot" cx="264" cy="76"  r="3" style="animation-delay:2.3s"/>
+                <!-- genomic models (teal) -->
+                <g fill="#4fc7bd">
+                    <circle class="dot" cx="247" cy="54"  r="7" style="animation-delay:.3s"/>
+                    <circle class="dot" cx="266" cy="50"  r="6" style="animation-delay:.8s"/>
+                    <circle class="dot" cx="276" cy="65"  r="6" style="animation-delay:1.3s"/>
+                    <circle class="dot" cx="252" cy="73"  r="5" style="animation-delay:1.8s"/>
+                    <circle class="dot" cx="269" cy="78"  r="5" style="animation-delay:2.3s"/>
                 </g>
                 <!-- single-cell & spatial (grey) -->
-                <g fill="#9a9a9a">
-                    <circle class="dot" cx="150" cy="110" r="5" style="animation-delay:.15s"/>
-                    <circle class="dot" cx="166" cy="104" r="4" style="animation-delay:.65s"/>
-                    <circle class="dot" cx="178" cy="118" r="4" style="animation-delay:1.15s"/>
-                    <circle class="dot" cx="154" cy="126" r="3" style="animation-delay:1.65s"/>
-                    <circle class="dot" cx="170" cy="130" r="3" style="animation-delay:2.15s"/>
-                    <circle class="dot" cx="160" cy="116" r="3" style="animation-delay:2.6s"/>
+                <g fill="#c2c2c2">
+                    <circle class="dot" cx="153" cy="110" r="7" style="animation-delay:.15s"/>
+                    <circle class="dot" cx="172" cy="106" r="6" style="animation-delay:.65s"/>
+                    <circle class="dot" cx="183" cy="120" r="6" style="animation-delay:1.15s"/>
+                    <circle class="dot" cx="157" cy="128" r="5" style="animation-delay:1.65s"/>
+                    <circle class="dot" cx="174" cy="133" r="5" style="animation-delay:2.15s"/>
                 </g>
-                <!-- multiomics (amber) -->
-                <g fill="#c9a35a">
-                    <circle class="dot" cx="80"  cy="160" r="5" style="animation-delay:.4s"/>
-                    <circle class="dot" cx="96"  cy="154" r="4" style="animation-delay:.9s"/>
-                    <circle class="dot" cx="106" cy="168" r="4" style="animation-delay:1.4s"/>
-                    <circle class="dot" cx="84"  cy="176" r="3" style="animation-delay:1.9s"/>
-                    <circle class="dot" cx="100" cy="180" r="3" style="animation-delay:2.4s"/>
+                <!-- multiomics (gold) -->
+                <g fill="#e6bd6a">
+                    <circle class="dot" cx="83"  cy="159" r="7" style="animation-delay:.4s"/>
+                    <circle class="dot" cx="101" cy="155" r="6" style="animation-delay:.9s"/>
+                    <circle class="dot" cx="112" cy="169" r="6" style="animation-delay:1.4s"/>
+                    <circle class="dot" cx="87"  cy="177" r="5" style="animation-delay:1.9s"/>
+                    <circle class="dot" cx="104" cy="183" r="5" style="animation-delay:2.4s"/>
                 </g>
-                <!-- generative models (terracotta) -->
-                <g fill="#b5654d">
-                    <circle class="dot" cx="243" cy="156" r="5" style="animation-delay:.25s"/>
-                    <circle class="dot" cx="259" cy="150" r="4" style="animation-delay:.75s"/>
-                    <circle class="dot" cx="270" cy="164" r="4" style="animation-delay:1.25s"/>
-                    <circle class="dot" cx="248" cy="174" r="3" style="animation-delay:1.75s"/>
-                    <circle class="dot" cx="264" cy="178" r="3" style="animation-delay:2.25s"/>
+                <!-- generative models (gulf orange) -->
+                <g fill="#ef8a4f">
+                    <circle class="dot" cx="247" cy="158" r="7" style="animation-delay:.25s"/>
+                    <circle class="dot" cx="266" cy="154" r="6" style="animation-delay:.75s"/>
+                    <circle class="dot" cx="277" cy="168" r="6" style="animation-delay:1.25s"/>
+                    <circle class="dot" cx="252" cy="178" r="5" style="animation-delay:1.75s"/>
+                    <circle class="dot" cx="268" cy="183" r="5" style="animation-delay:2.25s"/>
                 </g>
             </svg>
             <ul class="fig-legend">
-                <li><span class="sw" style="background:#7ec8f0"></span>foundation models</li>
-                <li><span class="sw" style="background:#5aa39a"></span>genomic models</li>
-                <li><span class="sw" style="background:#9a9a9a"></span>single-cell &amp; spatial</li>
-                <li><span class="sw" style="background:#c9a35a"></span>multiomics</li>
-                <li><span class="sw" style="background:#b5654d"></span>generative models</li>
+                <li><span class="sw" style="background:#86cdf5"></span>foundation models</li>
+                <li><span class="sw" style="background:#4fc7bd"></span>genomic models</li>
+                <li><span class="sw" style="background:#c2c2c2"></span>single-cell &amp; spatial</li>
+                <li><span class="sw" style="background:#e6bd6a"></span>multiomics</li>
+                <li><span class="sw" style="background:#ef8a4f"></span>generative models</li>
             </ul>
-            <figcaption>26 points &middot; 5 clusters &middot; nonlinear projection</figcaption>
+            <figcaption>25 points &middot; 5 clusters &middot; projected to 2D</figcaption>
         </figure>
     </div>
     <div class="scroll-indicator">
