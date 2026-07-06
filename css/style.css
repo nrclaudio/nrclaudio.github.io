@@ -8,10 +8,10 @@
     --bg:         #070707;  /* near-black terminal ground         */
     --panel:      #0c0c0c;  /* raised panels / cards              */
     --sunk:       #050505;  /* recessed strips                    */
-    --fg:         #c9c9c9;  /* primary text                       */
-    --art:        #dadada;  /* brightest text                     */
-    --dim:        #6f6f6f;  /* secondary text                     */
-    --faint:      #434343;  /* tertiary / captions                */
+    --fg:         #d7d7d7;  /* primary text                       */
+    --art:        #ededed;  /* brightest text                     */
+    --dim:        #9c9c9c;  /* secondary text                     */
+    --faint:      #6f6f6f;  /* tertiary / captions                */
     --line:       #232323;  /* hairline borders                   */
     --line-soft:  #191919;  /* fainter hairline                   */
     /* Gulf livery accents — powder-blue field, marigold stripe   */
