@@ -324,6 +324,16 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     line-height: 1.75;
 }
 .about-text p strong { color: var(--fg); }
+.about-text a {
+    color: var(--blue);
+    border-bottom: 1px solid var(--blue-dim);
+    transition: color 0.16s ease, border-color 0.16s ease, text-shadow 0.16s ease;
+}
+.about-text a:hover {
+    color: var(--glow);
+    border-color: var(--blue);
+    text-shadow: 0 0 8px rgba(126, 200, 245, 0.4);
+}
 
 .skills { margin-top: 52px; }
 .skills h3 {
