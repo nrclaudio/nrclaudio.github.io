@@ -432,6 +432,32 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     letter-spacing: 0.01em;
 }
 
+/* ------- Publications ---------------------------------------------------- */
+
+.publications { padding: 100px 0; }
+.pub-list { list-style: none; max-width: 860px; }
+.pub { padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
+.pub:last-child { border-bottom: none; }
+.pub-venue {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange-dim);
+    margin-bottom: 7px;
+}
+.pub-title {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.96rem;
+    color: var(--art);
+    line-height: 1.45;
+    transition: color 0.16s ease, text-shadow 0.16s ease;
+}
+.pub-title:hover { color: var(--glow); text-shadow: 0 0 8px rgba(126, 200, 245, 0.4); }
+.pub-authors { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); margin-top: 7px; }
+.pub-authors .me { color: var(--fg); }
+
 /* ------- Side Quests ----------------------------------------------------- */
 
 .quests { padding: 100px 0; }
