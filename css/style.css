@@ -1,5 +1,5 @@
 /* ==========================================================================
-   nrclaud.io — GLYPH48 terminal theme
+   nrclaud.io · GLYPH48 terminal theme
    Near-black phosphor terminal: monospace, greyscale hierarchy, a single
    green glow for life. Restrained. One indulgence.
    ========================================================================== */
@@ -14,8 +14,8 @@
     --faint:      #6f6f6f;  /* tertiary / captions                */
     --line:       #232323;  /* hairline borders                   */
     --line-soft:  #191919;  /* fainter hairline                   */
-    /* Gulf livery accents — powder-blue field, marigold stripe   */
-    --glow:       #9bd7f7;  /* bright gulf blue — the glow        */
+    /* Gulf livery accents: powder-blue field, marigold stripe    */
+    --glow:       #9bd7f7;  /* bright gulf blue, the glow         */
     --blue:       #7ec8f0;  /* gulf powder blue, text weight      */
     --blue-dim:   #4f87a8;  /* muted gulf blue                    */
     --orange:     #f0913f;  /* gulf marigold orange               */
@@ -226,7 +226,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     animation: rise 0.7s ease-out 0.1s both;
 }
 .hero-figure::before {
-    content: "fig.0 — interests, projected to 2D";
+    content: "fig.0 · interests, projected to 2D";
     display: block;
     font-family: var(--mono);
     font-size: 0.68rem;
@@ -265,7 +265,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     color: var(--faint);
     padding: 0 18px 14px;
 }
-/* Tape is a paper artifact — retire it in the terminal */
+/* Tape is a paper artifact; retire it in the terminal */
 .tape { display: none; }
 
 .dot { animation: twinkle 4s ease-in-out infinite; }
