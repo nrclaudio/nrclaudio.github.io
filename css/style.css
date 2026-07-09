@@ -709,7 +709,7 @@ mark { background: rgba(126, 200, 245,0.16); color: var(--glow); padding: 0 2px;
 /* ------- Contact --------------------------------------------------------- */
 
 .contact { padding: 100px 0; }
-.contact-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px; }
+.contact-content { display: grid; gap: 52px; }
 .contact-info { display: flex; flex-direction: column; gap: 20px; }
 .contact-item { display: flex; align-items: center; gap: 16px; }
 .contact-icon {
@@ -732,23 +732,6 @@ mark { background: rgba(126, 200, 245,0.16); color: var(--glow); padding: 0 2px;
 .contact-details h4 { font-family: var(--mono); font-size: 0.82rem; color: var(--fg); margin-bottom: 3px; font-weight: normal; }
 .contact-details a { color: var(--blue-dim); border-bottom: 1px solid transparent; transition: color 0.16s ease, border-color 0.16s ease; }
 .contact-details a:hover { color: var(--blue); border-color: var(--blue-dim); }
-
-.contact-form { display: flex; flex-direction: column; gap: 18px; }
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 9px 2px;
-    font-family: var(--mono);
-    font-size: 0.88rem;
-    color: var(--fg);
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--line);
-    transition: border-color 0.16s ease;
-}
-.form-group input::placeholder, .form-group textarea::placeholder { color: var(--faint); }
-.form-group input:focus, .form-group textarea:focus { outline: none; border-bottom-color: var(--blue-dim); }
-.form-group textarea { resize: vertical; min-height: 110px; }
-.contact-form .btn { align-self: flex-start; margin-top: 6px; }
 
 /* ------- Footer ---------------------------------------------------------- */
 
@@ -799,7 +782,6 @@ mark { background: rgba(126, 200, 245,0.16); color: var(--glow); padding: 0 2px;
 @media (max-width: 900px) {
     .hero-container { grid-template-columns: 1fr; gap: 40px; }
     .hero-figure { max-width: 440px; }
-    .contact-content { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {

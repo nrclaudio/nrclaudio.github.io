@@ -2,7 +2,6 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
-const contactForm = document.querySelector('.contact-form');
 const navbar = document.querySelector('.navbar');
 
 // Mobile Navigation Toggle
@@ -462,131 +461,10 @@ function typeWriter(element, text, speed = 100) {
 //     }
 // });
 
-// Contact form handling
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
-        
-        // Basic validation
-        if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        // Simulate form submission (replace with actual form handling)
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        this.reset();
-    });
-}
-
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <span>${message}</span>
-        <button class="notification-close">&times;</button>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        border-radius: 10px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        max-width: 400px;
-        animation: slideInFromRight 0.3s ease;
-        ${type === 'success' ? 'background: linear-gradient(135deg, #4CAF50, #45a049);' : ''}
-        ${type === 'error' ? 'background: linear-gradient(135deg, #f44336, #d32f2f);' : ''}
-        ${type === 'info' ? 'background: linear-gradient(135deg, #2196F3, #1976D2);' : ''}
-    `;
-    
-    // Add close button styles
-    const closeButton = notification.querySelector('.notification-close');
-    closeButton.style.cssText = `
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 0;
-        margin-left: 10px;
-    `;
-    
-    // Add to page
-    document.body.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOutToRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-    
-    // Close button functionality
-    closeButton.addEventListener('click', () => {
-        notification.style.animation = 'slideOutToRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    });
-}
-
 // Add notification animations to CSS
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideInFromRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
     
-    @keyframes slideOutToRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
     
     .animate-in {
         animation: fadeInUp 0.6s ease forwards;
