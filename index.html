@@ -143,7 +143,7 @@
         <div class="section-header">
             <div class="fig-label">Fig. 01 &middot; About</div>
             <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">// researcher · problem-solver · perpetually curious</p>
+            <p class="section-subtitle">// the short version</p>
         </div>
         <div class="about-content">
             <div class="about-text">
@@ -153,8 +153,9 @@
                     problems underneath them, applied to how different omics interact in space and disease.
                 </p>
                 <p>
-                    I've designed deep learning models for multi-omics integration, worked with large-scale single-cell and spatial data,
-                    and explored optimal transport to disentangle disease mechanisms and enable biological discovery.
+                    In practice that means deep learning for multi-omics integration, a lot of large-scale
+                    single-cell and spatial data, and optimal transport when I need to compare two conditions
+                    without pretending they already live in the same coordinate system.
                 </p>
 
                 <div class="skills">
@@ -181,7 +182,7 @@
         <div class="section-header">
             <div class="fig-label">Fig. 02 &middot; Projects</div>
             <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">"Problems worthy of attack prove their worth by fighting back"</p>
+            <p class="section-subtitle">"Problems worthy of attack prove their worth by fighting back" &middot; Piet Hein</p>
         </div>
         <div class="projects-grid">
             <a class="project-card" href="https://github.com/nrclaudio/GAZE" target="_blank" rel="noopener">
@@ -207,7 +208,8 @@
                 <div class="project-content">
                     <h3 class="project-title">Modeling Cell-Cell Communication</h3>
                     <p class="project-description">
-                        Developed a spatially-aware model of ligand-receptor signaling in polycystic kidney disease (ADPKD)
+                        A spatially aware model of ligand-receptor signaling in polycystic kidney disease (ADPKD),
+                        built to ask which cells are talking to each other, and where.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Spatial data</span>
@@ -220,8 +222,10 @@
                 <div class="project-content">
                     <h3 class="project-title">spVIPES: shared-private Variational Inference with Product of Experts</h3>
                     <p class="project-description">
-                        I designed spVIPES, a model that disentangles biological variation.
-                        The architecture combines variational inference with a novel product-of-experts based alignment leveraging optimal transport to compare any two conditions.
+                        spVIPES separates the biological variation two conditions share from the variation
+                        each one keeps to itself. It is variational inference with a product-of-experts
+                        alignment, plus optimal transport so the two latent spaces can be compared without
+                        assuming they already line up.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Variational Inference</span>
@@ -237,9 +241,9 @@
                     <h3 class="project-title">MKA: Mouse Kidney Atlas</h3>
                     <p class="project-metric">140k cells &middot; 59 datasets &middot; iScience 2023</p>
                     <p class="project-description">
-                        A comprehensive single-cell atlas of the healthy mouse kidney, integrating eight studies
-                        with scVI/scANVI and scHPL to auto-label cell populations and surface robust markers
-                        for poorly described cell types.
+                        A single-cell atlas of the healthy mouse kidney. Eight studies integrated with
+                        scVI and scANVI, then scHPL to label cell populations automatically. The interesting
+                        part was the markers it turned up for cell types nobody had described well.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Single-cell</span>
@@ -254,9 +258,9 @@
                 <div class="project-content">
                     <h3 class="project-title">ASTRID: Spaceflight Impact Disentanglement</h3>
                     <p class="project-description">
-                        A machine-learning model that disentangles the transcriptional impact of spaceflight
-                        (radiation and microgravity) from NASA GeneLab data, to anticipate health
-                        risks for astronauts on long missions.
+                        A model that pulls apart the transcriptional effects of spaceflight, separating
+                        radiation from microgravity, using NASA GeneLab data. Telling the two apart matters
+                        for predicting what a long mission does to the people on it.
                     </p>
                     <div class="project-technologies">
                         <span class="tech-tag">Spatial Transcriptomics</span>
@@ -316,27 +320,27 @@
         <div class="section-header">
             <div class="fig-label">Fig. 04 &middot; Side Quests</div>
             <h2 class="section-title">Side Quests</h2>
-            <p class="section-subtitle">// nights-and-weekends experiments, built for the joy of it</p>
+            <p class="section-subtitle">// things I built on weekends, with no particular plan</p>
         </div>
         <div class="quest-grid">
             <a class="quest-card" href="https://github.com/nrclaudio/covid19-stream-mood" target="_blank" rel="noopener">
                 <div class="quest-name">covid19-stream-mood</div>
-                <p class="quest-desc">Inferring public mood in real time from streaming Twitter data during the pandemic.</p>
+                <p class="quest-desc">Reads public mood off the Twitter firehose in real time. Built during the pandemic, when the mood changed by the hour.</p>
                 <span class="quest-arrow">view repo &#8599;</span>
             </a>
             <a class="quest-card" href="https://github.com/nrclaudio/GuessLib" target="_blank" rel="noopener">
                 <div class="quest-name">GuessLib</div>
-                <p class="quest-desc">An open-access tool for recognizing NGS library types, wrapped in a small Django app.</p>
+                <p class="quest-desc">Works out which NGS library type you're looking at. Wrapped in a small Django app so it works for people who'd rather not open a terminal.</p>
                 <span class="quest-arrow">view repo &#8599;</span>
             </a>
             <a class="quest-card" href="https://github.com/nrclaudio/dna-python" target="_blank" rel="noopener">
                 <div class="quest-name">dna-python</div>
-                <p class="quest-desc">A tiny Python class for modeling DNA sequences, the kind of thing you write to really understand something.</p>
+                <p class="quest-desc">A tiny Python class for modeling DNA sequences. The kind of thing you write to understand something, not because it needs to exist.</p>
                 <span class="quest-arrow">view repo &#8599;</span>
             </a>
             <a class="quest-card" href="https://github.com/nrclaudio/neetcode-submissions" target="_blank" rel="noopener">
                 <div class="quest-name">neetcode-submissions</div>
-                <p class="quest-desc">Working through NeetCode.io, one algorithm problem at a time.</p>
+                <p class="quest-desc">Slowly working through NeetCode.io. Progress is uneven.</p>
                 <span class="quest-arrow">view repo &#8599;</span>
             </a>
         </div>
@@ -354,9 +358,9 @@
         </div>
         <div class="qa-preview">
             <p class="qa-note">
-                <b>How this works:</b> lexical <b>BM25</b> retrieval over my public repositories.
-                No LLM, no hallucinations. Every claim links to the exact lines it came from,
-                so you can check my work.
+                This runs BM25 lexical retrieval over my public repositories. There is no language model
+                in the loop, so it cannot invent an answer. Every result links back to the lines it came
+                from, and you should check them.
             </p>
 
             <!-- Notebook query cell -->
@@ -417,7 +421,7 @@
                     </div>
                     <div class="contact-details">
                         <h4>LinkedIn</h4>
-                        <a href="https://linkedin.com/in/nrclaudio" target="_blank">Connect with me</a>
+                        <a href="https://linkedin.com/in/nrclaudio" target="_blank">linkedin.com/in/nrclaudio</a>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -426,7 +430,7 @@
                     </div>
                     <div class="contact-details">
                         <h4>GitHub</h4>
-                        <a href="https://github.com/nrclaudio" target="_blank">View my code</a>
+                        <a href="https://github.com/nrclaudio" target="_blank">github.com/nrclaudio</a>
                     </div>
                 </div>
             </div>
