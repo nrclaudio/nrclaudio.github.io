@@ -192,6 +192,26 @@
             <p class="section-subtitle">"Problems worthy of attack prove their worth by fighting back" &middot; Piet Hein</p>
         </div>
         <div class="projects-grid">
+            <a class="project-card" href="/nasciiente/">
+                <div class="project-content">
+                    <h3 class="project-title">nASCIIente: text-to-ASCII-art generation</h3>
+                    <p class="project-metric">34.5M parameters &middot; CPU inference at ~140&nbsp;MB</p>
+                    <p class="project-description">
+                        A masked transformer trained from scratch to draw ASCII art from a
+                        text prompt. Characters are the tokens rather than pixels: the model
+                        fills a 48&times;80 grid by iterative parallel unmasking. The write-up
+                        documents nine failures, including two published decoding techniques
+                        that did not survive contact with the domain.
+                    </p>
+                    <div class="project-technologies">
+                        <span class="tech-tag">Masked transformer</span>
+                        <span class="tech-tag">MaskGIT decoding</span>
+                        <span class="tech-tag">2D RoPE</span>
+                        <span class="tech-tag">Synthetic data</span>
+                    </div>
+                </div>
+            </a>
+
             <a class="project-card" href="https://github.com/nrclaudio/GAZE" target="_blank" rel="noopener">
                 <div class="project-content">
                     <h3 class="project-title">GAZE: zero-shot metabolite prediction</h3>

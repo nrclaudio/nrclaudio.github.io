@@ -15,6 +15,7 @@ REPO_SOURCES = [
     {"name": "ASTRID", "url": "https://github.com/nrclaudio/ASTRID.git", "owner": "nrclaudio"},
     {"name": "GAZE", "url": "https://github.com/nrclaudio/GAZE.git", "owner": "nrclaudio"},
     {"name": "spatial-pkd", "url": "https://github.com/nrclaudio/spatial-pkd.git", "owner": "nrclaudio"},
+    {"name": "nasciiente", "url": "https://github.com/nrclaudio/nasciiente.git", "owner": "nrclaudio"},
 ]
 MAX_CHUNKS = 20000
 TOP_K = 12
